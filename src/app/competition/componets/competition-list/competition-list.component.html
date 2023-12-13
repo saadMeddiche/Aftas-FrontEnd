@@ -1,1 +1,29 @@
-<p>competition-list works!</p>
+<div class="competition-list">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Participants</th>
+      <th>Location</th>
+      <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let competition of competitions">
+      <td>{{ competition.id }}</td>
+      <td>{{ competition.code }}</td>
+      <td>{{ competition.date }}</td>
+      <td>{{ competition.startTime }}</td>
+      <td>{{ competition.endTime }}</td>
+      <td>{{ competition.numberOfParticipants }}</td>
+      <td>{{ competition.location }}</td>
+      <td>{{ competition.amount }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

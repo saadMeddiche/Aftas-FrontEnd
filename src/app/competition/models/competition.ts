@@ -1,6 +1,6 @@
 export interface Competition{
   id: number;
-  name: string;
+  code: string;
   date: string;
   startTime: string;
   endTime: string;
