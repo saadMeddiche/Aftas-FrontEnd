@@ -1,5 +1,5 @@
 <div class="competition-list">
-  <table>
+  <table *ngIf="competitions && competitions.length > 0 ; else whenCompetitionsIsEmpty">
     <thead>
     <tr>
       <th>ID</th>
@@ -13,7 +13,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let competition of competitions">
+    <tr  *ngFor="let competition of competitions">
       <td>{{ competition.id }}</td>
       <td>{{ competition.code }}</td>
       <td>{{ competition.date }}</td>
@@ -26,4 +26,11 @@
     </tbody>
   </table>
 </div>
+
+<ng-template  #whenCompetitionsIsEmpty>
+  <div class="loading-container">
+    <p>Loading...</p>
+  </div>
+</ng-template>
+
 

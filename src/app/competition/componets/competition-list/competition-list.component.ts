@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import {Competition} from "../../models/competition";
 import {CompetitionService} from "../../services/competition.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-competition-list',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './competition-list.component.html',
   styleUrl: './competition-list.component.scss'
