@@ -70,7 +70,7 @@ export class CompetitionAddComponent {
         this.notificationService.show(['Competition Added Successfully'] , 'success');
       },
       (HttpErrorResponse) => {
-        console.log(HttpErrorResponse)
+        console.log(HttpErrorResponse.error)
         this.notificationService.show(HttpErrorResponse.error , 'error');
       }
     )
