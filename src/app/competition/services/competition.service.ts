@@ -4,6 +4,8 @@ import {Competition} from "../models/competition";
 import {Observable} from "rxjs";
 import {CompetitionAddComponent} from "../componets/competition-add/competition-add.component";
 import {CompetitionAddRequest} from "../models/competitionAddRequest";
+import {PaginatedMembersResponse} from "../../member/models/paginatedMembersResponse";
+import {PaginatedCompetitionsResponse} from "../models/paginatedCompetitionsResponse";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,6 +25,10 @@ export class CompetitionService {
   getCompetitions(): Observable<Competition[]>{
 
     return this.http.get<Competition[]>(this.apiUrl);
+  }
+
+  searchCompetitions(value: string , page: number , size: number): Observable<PaginatedCompetitionsResponse> {
+    return this.http.get<PaginatedCompetitionsResponse>(this.apiUrl + "/search/" + value + "?page=" + page + "&size=" + size);
   }
 
 

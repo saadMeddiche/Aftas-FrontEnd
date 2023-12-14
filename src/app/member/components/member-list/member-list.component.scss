@@ -63,6 +63,36 @@
   }
 }
 
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+
+  .page-button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      color: #666;
+      border-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
 .empty-members-container {
   display: flex;
   align-items: center;

@@ -3,13 +3,16 @@ import {Competition} from "../../models/competition";
 import {CompetitionService} from "../../services/competition.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NgForOf, NgIf} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+import {NotificationsService} from "../../../notifications/services/notifications.service";
 
 @Component({
   selector: 'app-competition-list',
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './competition-list.component.html',
   styleUrl: './competition-list.component.scss'
@@ -18,28 +21,40 @@ export class CompetitionListComponent {
 
   public competitions: Competition[] = [];
 
-  public competitionsIsEmpty: boolean = true;
+  public lookingFor: string = '';
 
-  constructor(private competitionService: CompetitionService) {}
+  public totalPages: number = 0;
+
+  public page: number = 0;
+
+  public size: number = 3;
+
+  constructor(private competitionService: CompetitionService , private notificationService: NotificationsService) {}
 
   ngOnInit(){
-
     this.getCompetitions()
   }
 
-  private getCompetitions(){
-    this.competitionService.getCompetitions().subscribe(
-      (competitions : Competition[]) =>
-      {
+  public onSearch(){
+    this.getCompetitions()
+  }
 
-        this.competitions = competitions
+  public onPageChange(n: number) {
+    this.page += n;
+    this.getCompetitions();
+  }
+
+  private getCompetitions(){
+    this.competitionService.searchCompetitions(this.lookingFor , this.page , this.size).subscribe(
+      (PaginatedCompetitionsResponse ) =>
+      {
+        this.competitions = PaginatedCompetitionsResponse.content
+        this.totalPages = PaginatedCompetitionsResponse.totalPages
       }
       ,
       (HttpErrorResponse) => {
-
-        if(HttpErrorResponse.status == 204){
-          this.competitionsIsEmpty = true
-        }
+        this.notificationService.show(HttpErrorResponse.error , "warning")
+        console.log("Development Purpose Error :"+ HttpErrorResponse.error)
       }
     )
   }

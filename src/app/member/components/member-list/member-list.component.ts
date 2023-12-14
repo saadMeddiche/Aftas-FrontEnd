@@ -3,6 +3,7 @@ import {Member} from "../../models/member";
 import {MemberService} from "../../services/member.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {NotificationsService} from "../../../notifications/services/notifications.service";
 
 @Component({
   selector: 'app-member-list',
@@ -19,8 +20,6 @@ export class MemberListComponent {
 
   public members: Member[] = [];
 
-  public membersIsEmpty: boolean = true;
-
   public lookingFor: string = '';
 
   public totalPages: number = 0;
@@ -29,7 +28,7 @@ export class MemberListComponent {
 
   public size: number = 3;
 
-  constructor(private competitionService: MemberService) {}
+  constructor(private competitionService: MemberService , private notificationService: NotificationsService) {}
 
   ngOnInit(){
     this.getMembers()
@@ -37,6 +36,11 @@ export class MemberListComponent {
 
   public onSearch(){
     this.getMembers()
+  }
+
+  public onPageChange(n: number) {
+    this.page += n;
+    this.getMembers();
   }
 
   private getMembers(){
@@ -48,10 +52,8 @@ export class MemberListComponent {
       }
       ,
       (HttpErrorResponse) => {
-
-        if(HttpErrorResponse.status == 204){
-          this.membersIsEmpty = true
-        }
+        this.notificationService.show(HttpErrorResponse.error , "warning")
+        console.log("Development Purpose Error :"+ HttpErrorResponse.error)
       }
     )
   }

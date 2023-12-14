@@ -1,3 +1,8 @@
+<div class="search-bar">
+  <input type="text" placeholder="Search..." [(ngModel)]="lookingFor" (input)="onSearch()" />
+  <button (click)="onSearch()">Search</button>
+</div>
+
 <div class="competition-list">
   <table *ngIf="competitions && competitions.length > 0 ; else whenCompetitionsIsEmpty">
     <thead>
@@ -27,9 +32,15 @@
   </table>
 </div>
 
+<div class="pagination">
+  <button class="page-button" [disabled]="page === 0" (click)="onPageChange(-1)">Previous</button>
+  <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+  <button class="page-button" [disabled]="page === totalPages - 1" (click)="onPageChange(1)">Next</button>
+</div>
+
 <ng-template  #whenCompetitionsIsEmpty>
   <div class="loading-container">
-    <p>Loading...</p>
+    <p>No competitions available.</p>
   </div>
 </ng-template>
 
