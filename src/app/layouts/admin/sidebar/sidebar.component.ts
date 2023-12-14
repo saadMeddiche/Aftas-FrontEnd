@@ -15,7 +15,9 @@ import {NgForOf} from "@angular/common";
 export class SidebarComponent {
   menuItems: MenuItem[] = [
     { name: 'Competitions', route: 'competitions' },
-    { name: 'Add', route: 'competitions/add'}
+    { name: 'Add Competition', route: 'competitions/add'},
+    { name: 'Members', route: 'members' },
+    { name: 'Add Member', route: 'members/add'}
   ];
 }
 

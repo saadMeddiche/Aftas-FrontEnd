@@ -1,1 +1,23 @@
-<p>member-add works!</p>
+<form (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="newMember.name" required/>
+
+  <label for="familyName">Family Name:</label>
+  <input type="text" id="familyName" name="familyName" [(ngModel)]="newMember.familyName" required/>
+
+  <label for="accessionDate">Accession Date:</label>
+  <input type="date" id="accessionDate" name="accessionDate" [(ngModel)]="newMember.accessionDate" required/>
+
+  <label for="nationality">Nationality:</label>
+  <input type="text" id="nationality" name="nationality" [(ngModel)]="newMember.nationality" required/>
+
+  <label for="identityDocument">Identity Document:</label>
+  <select id="identityDocument" name="identityDocument" [(ngModel)]="newMember.identityDocument" required>
+    <option *ngFor="let document of identityDocuments" [value]="document">{{ document }}</option>
+  </select>
+
+  <label for="identityNumber">Identity Number:</label>
+  <input type="text" id="identityNumber" name="identityNumber" [(ngModel)]="newMember.identityNumber" required/>
+
+  <button type="submit">Add Member</button>
+</form>

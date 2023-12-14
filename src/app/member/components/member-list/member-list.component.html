@@ -1,1 +1,32 @@
-<p>member-list works!</p>
+<div class="member-list">
+  <table *ngIf="members && members.length > 0; else whenMembersIsEmpty">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Family Name</th>
+      <th>Accession Date</th>
+      <th>Nationality</th>
+      <th>Identity Document</th>
+      <th>Identity Number</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let member of members">
+      <td>{{ member.id }}</td>
+      <td>{{ member.name }}</td>
+      <td>{{ member.familyName }}</td>
+      <td>{{ member.accessionDate }}</td>
+      <td>{{ member.nationality }}</td>
+      <td>{{ member.identityDocument }}</td>
+      <td>{{ member.identityNumber }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #whenMembersIsEmpty>
+  <div class="empty-members-container">
+    <p>No members available.</p>
+  </div>
+</ng-template>

@@ -1,5 +1,5 @@
 export enum IdentityDocument{
-  CIN ,
-  PASSPORT ,
-  CARTE_RESIDENCE ,
+  CIN = 'CIN',
+  PASSPORT ='PASSPORT',
+  CARTE_RESIDENCE = 'CARTE RESIDENCE'
 }
