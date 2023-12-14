@@ -5,6 +5,7 @@ import {Competition} from "../../models/competition";
 import {CompetitionAddRequest} from "../../models/competitionAddRequest";
 import {CompetitionService} from "../../services/competition.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {NotificationsService} from "../../../notifications/services/notifications.service";
 
 @Component({
   selector: 'app-competition-add',
@@ -24,9 +25,9 @@ export class CompetitionAddComponent {
       endTime: '',
       numberOfParticipants: 0,
       location: '',
-      amount: 0
+      amount: 0.0
     }
-    constructor(private competitionService: CompetitionService) {}
+    constructor(private competitionService: CompetitionService , private notificationService: NotificationsService) {}
 
   ngOnInit(){
     this.setDefaultCompetition();
@@ -42,7 +43,7 @@ export class CompetitionAddComponent {
       this.newCompetition.endTime = '17:00';
       this.newCompetition.numberOfParticipants = 1;
       this.newCompetition.location = '';
-      this.newCompetition.amount = 0;
+      this.newCompetition.amount = 0.0;
   }
 
   private getDefaultDate(): string{
@@ -66,9 +67,11 @@ export class CompetitionAddComponent {
     this.competitionService.addCompetition(this.newCompetition).subscribe(
       (competition) => {
         this.setDefaultCompetition();
+        this.notificationService.show(['Competition Added Successfully'] , 'success');
       },
       (HttpErrorResponse) => {
-
+        console.log(HttpErrorResponse)
+        this.notificationService.show(HttpErrorResponse.error , 'error');
       }
     )
 
