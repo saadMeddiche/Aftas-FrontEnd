@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import {Competition} from "../../../competition/models/competition";
-import {CompetitionService} from "../../../competition/services/competition.service";
 import {Member} from "../../models/member";
 import {MemberService} from "../../services/member.service";
 import {NgForOf, NgIf} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-member-list',
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.scss'
@@ -21,19 +21,30 @@ export class MemberListComponent {
 
   public membersIsEmpty: boolean = true;
 
+  public lookingFor: string = '';
+
+  public totalPages: number = 0;
+
+  public page: number = 0;
+
+  public size: number = 3;
+
   constructor(private competitionService: MemberService) {}
 
   ngOnInit(){
+    this.getMembers()
+  }
 
+  public onSearch(){
     this.getMembers()
   }
 
   private getMembers(){
-    this.competitionService.getMembers().subscribe(
-      (members : Member[]) =>
+    this.competitionService.searchMembers(this.lookingFor , this.page , this.size).subscribe(
+      (PaginatedMembersResponse ) =>
       {
-
-        this.members = members
+        this.members = PaginatedMembersResponse.content
+        this.totalPages = PaginatedMembersResponse.totalPages
       }
       ,
       (HttpErrorResponse) => {

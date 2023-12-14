@@ -5,6 +5,7 @@ import {Competition} from "../../competition/models/competition";
 import {CompetitionAddRequest} from "../../competition/models/competitionAddRequest";
 import {Member} from "../models/member";
 import {MemberAddRequest} from "../models/memberAddRequest";
+import {PaginatedMembersResponse} from "../models/paginatedMembersResponse";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,8 +23,11 @@ export class MemberService {
   constructor(private http: HttpClient) { }
 
   getMembers(): Observable<Member[]>{
-
     return this.http.get<Member[]>(this.apiUrl);
+  }
+
+  searchMembers(value: string , page: number , size: number): Observable<PaginatedMembersResponse> {
+    return this.http.get<PaginatedMembersResponse>(this.apiUrl + "/search/" + value + "?page=" + page + "&size=" + size);
   }
 
 
