@@ -1,0 +1,45 @@
+/* competition-add.component.scss */
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+
+  background-size: cover;
+  background-position: center;
+  color: #fff; /* Set text color to white for better contrast */
+  width: 100%;
+
+
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #3498db; /* Fishing blue color */
+  }
+
+  input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #3498db;
+    border-radius: 4px;
+    font-family: 'Arial', sans-serif;
+    background-color: rgba(255, 255, 255, 0.7); /* Add a semi-transparent white background for better readability */
+  }
+
+  button {
+    padding: 12px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+  }
+}

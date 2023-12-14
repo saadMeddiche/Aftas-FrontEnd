@@ -1,1 +1,23 @@
-<p>competition-add works!</p>
+<!-- competition-add.component.html -->
+
+<form  (ngSubmit)="onSubmit()">
+  <label for="date">Date:</label>
+  <input type="date" id="date" name="date" [(ngModel)]="newCompetition.date"/>
+
+  <label for="startTime">Start Time:</label>
+  <input type="time" id="startTime" name="startTime" [(ngModel)]="newCompetition.startTime" />
+
+  <label for="endTime">End Time:</label>
+  <input type="time" id="endTime" name="endTime" [(ngModel)]="newCompetition.endTime" />
+
+  <label for="numberOfParticipants">Number of Participants:</label>
+  <input type="number" id="numberOfParticipants" name="numberOfParticipants" [(ngModel)]="newCompetition.numberOfParticipants"/>
+
+  <label for="location">Location:</label>
+  <input type="text" id="location" name="location" [(ngModel)]="newCompetition.location" />
+
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" name="amount" [(ngModel)]="newCompetition.amount" />
+
+  <button type="submit" >Add Competition</button>
+</form>
