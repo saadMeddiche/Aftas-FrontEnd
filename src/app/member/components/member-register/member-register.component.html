@@ -1,1 +1,56 @@
-<p>member-register works!</p>
+<h1>Inscription</h1>
+
+<div class="search-bar">
+  <input type="text" placeholder="Search..." [(ngModel)]="lookingFor" (input)="onSearch()" />
+  <button (click)="onSearch()">Search</button>
+</div>
+
+<div class="competition-list">
+  <table *ngIf="competitions && competitions.length > 0 ; else whenCompetitionsIsEmpty">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Participants</th>
+      <th>Location</th>
+      <th>Amount</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let competition of competitions">
+      <td>{{ competition.id }}</td>
+      <td>{{ competition.code }}</td>
+      <td>{{ competition.date }}</td>
+      <td>{{ competition.startTime }}</td>
+      <td>{{ competition.endTime }}</td>
+      <td>{{ competition.numberOfParticipants }}</td>
+      <td>{{ competition.location }}</td>
+      <td>{{ competition.amount }}</td>
+      <td class="actions">
+        <button (click)="inscription(competition.id)">
+          <i class="material-icons">person_add</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <button class="page-button" [disabled]="page === 0" (click)="onPageChange(-1)">Previous</button>
+  <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+  <button class="page-button" [disabled]="page === totalPages - 1" (click)="onPageChange(1)">Next</button>
+</div>
+
+<ng-template  #whenCompetitionsIsEmpty>
+  <div class="loading-container">
+    <p>No competitions available.</p>
+  </div>
+</ng-template>
+
+
+

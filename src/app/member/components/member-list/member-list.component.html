@@ -27,7 +27,7 @@
       <td>{{ member.identityDocument }}</td>
       <td>{{ member.identityNumber }}</td>
       <td class="inscription">
-        <button>
+        <button [routerLink]="['/register' , member.id]">
           <i class="material-icons">add</i>
         </button>
       </td>

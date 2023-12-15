@@ -27,9 +27,9 @@ export class CompetitionListComponent {
 
   public page: number = 0;
 
-  public size: number = 3;
+  public size: number = 5;
 
-  constructor(private competitionService: CompetitionService , private notificationService: NotificationsService) {}
+  constructor(protected competitionService: CompetitionService , protected notificationService: NotificationsService) {}
 
   ngOnInit(){
     this.getCompetitions()
@@ -44,7 +44,7 @@ export class CompetitionListComponent {
     this.getCompetitions();
   }
 
-  private getCompetitions(){
+  public getCompetitions(){
     this.competitionService.searchCompetitions(this.lookingFor , this.page , this.size).subscribe(
       (PaginatedCompetitionsResponse ) =>
       {

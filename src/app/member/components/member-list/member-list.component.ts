@@ -4,6 +4,7 @@ import {MemberService} from "../../services/member.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {NotificationsService} from "../../../notifications/services/notifications.service";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-member-list',
@@ -11,7 +12,8 @@ import {NotificationsService} from "../../../notifications/services/notification
   imports: [
     NgForOf,
     NgIf,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.scss'
