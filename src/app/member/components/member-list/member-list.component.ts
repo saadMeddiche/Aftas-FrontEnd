@@ -30,7 +30,7 @@ export class MemberListComponent {
 
   public size: number = 3;
 
-  constructor(private competitionService: MemberService , private notificationService: NotificationsService) {}
+  constructor(protected memberService: MemberService , protected notificationService: NotificationsService) {}
 
   ngOnInit(){
     this.getMembers()
@@ -45,8 +45,8 @@ export class MemberListComponent {
     this.getMembers();
   }
 
-  private getMembers(){
-    this.competitionService.searchMembers(this.lookingFor , this.page , this.size).subscribe(
+  protected getMembers(){
+    this.memberService.searchMembers(this.lookingFor , this.page , this.size).subscribe(
       (PaginatedMembersResponse ) =>
       {
         this.members = PaginatedMembersResponse.content

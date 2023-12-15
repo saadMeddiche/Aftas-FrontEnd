@@ -14,7 +14,7 @@
       <th>Nationality</th>
       <th>Identity Document</th>
       <th>Identity Number</th>
-      <th>Inscription</th>
+
     </tr>
     </thead>
     <tbody>
@@ -26,11 +26,6 @@
       <td>{{ member.nationality }}</td>
       <td>{{ member.identityDocument }}</td>
       <td>{{ member.identityNumber }}</td>
-      <td class="inscription">
-        <button [routerLink]="['/register' , member.id]">
-          <i class="material-icons">add</i>
-        </button>
-      </td>
     </tr>
     </tbody>
   </table>
@@ -44,6 +39,6 @@
 
 <ng-template #whenMembersIsEmpty>
   <div class="empty-members-container">
-    <p>No members available.</p>
+    <p>There is no participants yet.</p>
   </div>
 </ng-template>
