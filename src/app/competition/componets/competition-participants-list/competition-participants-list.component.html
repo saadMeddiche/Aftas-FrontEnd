@@ -14,6 +14,7 @@
       <th>Nationality</th>
       <th>Identity Document</th>
       <th>Identity Number</th>
+      <th>Hunting</th>
 
     </tr>
     </thead>
@@ -26,6 +27,11 @@
       <td>{{ member.nationality }}</td>
       <td>{{ member.identityDocument }}</td>
       <td>{{ member.identityNumber }}</td>
+      <td class="fishing">
+        <button [routerLink]="['/hunting/competitions' , competitionId , 'participants' , member.id]">
+          <i class="material-icons">phishing</i>
+        </button>
+      </td>
     </tr>
     </tbody>
   </table>

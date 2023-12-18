@@ -1,0 +1,45 @@
+<div class="search-bar">
+  <input type="text" placeholder="Search..." [(ngModel)]="lookingFor" (input)="onSearch()" />
+  <button (click)="onSearch()">Search</button>
+</div>
+
+<div class="weight-bar">
+  <input type="text" placeholder="Weight of hunted fish ..." [(ngModel)]="newHunting.weightOfHuntedFish">
+  <input type="text" placeholder="Selected Fish" [(ngModel)]="huntedFishName" disabled>
+  <button (click)="addHunting()">Hunting</button>
+</div>
+
+<div class="fish-list">
+  <table *ngIf="fishes && fishes.length > 0; else whenFishesIsEmpty">
+    <thead>
+    <tr>
+      <th>#N°</th>
+      <th>Name</th>
+      <th>Average Weight</th>
+      <th>Level</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let fish of fishes" (click)="setHuntedFish(fish.id , fish.name)">
+      <td>{{ fish.id }}</td>
+      <td>{{ fish.name }}</td>
+      <td>{{ fish.averageWeight }} Kg</td>
+      <td>{{ fish.level.code }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  <button class="page-button" [disabled]="page === 0 || totalPages == 0" (click)="onPageChange(-1)">Previous</button>
+  <span>Page {{ page + 1 }} of {{ totalPages }}</span>
+  <button class="page-button" [disabled]="page === totalPages - 1 || totalPages == 0" (click)="onPageChange(1)">Next</button>
+</div>
+
+<ng-template  #whenFishesIsEmpty>
+  <div class="loading-container">
+    <p>No fishes available.</p>
+  </div>
+</ng-template>
+
+

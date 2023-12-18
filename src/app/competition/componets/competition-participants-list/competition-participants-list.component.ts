@@ -3,7 +3,7 @@ import {MemberListComponent} from "../../../member/components/member-list/member
 import {MemberService} from "../../../member/services/member.service";
 import {NotificationsService} from "../../../notifications/services/notifications.service";
 import {CompetitionService} from "../../services/competition.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
@@ -14,7 +14,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     NgForOf,
     NgIf,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './competition-participants-list.component.html',
   styleUrl: './competition-participants-list.component.scss'
