@@ -15,6 +15,7 @@
       <th>Max Participants</th>
       <th>Location</th>
       <th>Amount</th>
+      <th>Results</th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +30,11 @@
       </td>
       <td>{{ competition.location }}</td>
       <td>{{ competition.amount }}</td>
+      <td class="results">
+        <button [routerLink]="['/competitions/results' , competition.id]">
+          <i class="material-icons">emoji_events</i>
+        </button>
+      </td>
     </tr>
     </tbody>
   </table>

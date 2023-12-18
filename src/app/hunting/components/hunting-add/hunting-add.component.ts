@@ -10,7 +10,7 @@ import {HuntingService} from "../../services/hunting.service";
 import {PaginatedFishesResponse} from "../../models/paginatedFishesResponse";
 import {HuntingAddRequest} from "../../models/huntingAddRequest";
 import {HttpErrorResponse} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-hunting-add',
@@ -76,12 +76,10 @@ export class HuntingAddComponent {
   }
 
   public goBackDefault(){
-    this.newHunting = {
-      fishId : undefined,
-      weightOfHuntedFish : undefined,
-      memberId : undefined,
-      competitionId : undefined
-    };
+
+    this.newHunting.fishId = undefined;
+    this.newHunting.weightOfHuntedFish = undefined;
+
     this.lookingFor = '';
     this.huntedFishName = undefined;
     this.getFishes()
@@ -91,7 +89,7 @@ export class HuntingAddComponent {
       this.huntingService.addHunting(this.newHunting).subscribe(
         () =>{
           this.notificationService.show(["Hunting Added Successfully"] , "success");
-         this.goBackDefault();
+          this.goBackDefault();
         },
         (HttpErrorResponse) => {
           this.notificationService.show(HttpErrorResponse.error , "error")

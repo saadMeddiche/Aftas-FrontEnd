@@ -7,6 +7,8 @@ import {CompetitionAddRequest} from "../models/competitionAddRequest";
 import {PaginatedMembersResponse} from "../../member/models/paginatedMembersResponse";
 import {PaginatedCompetitionsResponse} from "../models/paginatedCompetitionsResponse";
 import {Member} from "../../member/models/member";
+import {Rank} from "../models/rank";
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -39,6 +41,15 @@ export class CompetitionService {
 
   searchParticipantsOfCompetition(competitionId: number , value: string , page: number , size: number): Observable<PaginatedMembersResponse> {
     return this.http.get<PaginatedMembersResponse>(this.apiUrl + "/" + competitionId + "/participants/" + value + "?page=" + page + "&size=" + size);
+  }
+
+
+  calculateResults(competitionId: number): Observable<any>{
+    return this.http.get<any>(this.apiUrl + "/results/" + competitionId);
+  }
+
+  getTopThree(competitionId: number): Observable<Rank> {
+    return this.http.get<Rank>(this.apiUrl + "/topthree/" + competitionId);
   }
 
 }

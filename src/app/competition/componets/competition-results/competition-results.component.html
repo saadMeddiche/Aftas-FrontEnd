@@ -1,0 +1,14 @@
+<div class="member-list">
+  <div *ngFor="let rank of ranks" class="rank">
+    <h2>Group {{ getKey(rank) }}</h2>
+    <div *ngFor="let member of rank[getKey(rank)]" class="member-card">
+      <div class="member-info">
+        <strong>Name:</strong> {{ member.member.name }}
+      </div>
+      <div class="member-info">
+        <strong>Score:</strong> {{ member.score }}
+      </div>
+      <hr />
+    </div>
+  </div>
+</div>
