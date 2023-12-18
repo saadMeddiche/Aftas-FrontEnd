@@ -32,9 +32,9 @@
 </div>
 
 <div class="pagination">
-  <button class="page-button" [disabled]="page === 0" (click)="onPageChange(-1)">Previous</button>
+  <button class="page-button" [disabled]="page === 0 || totalPages == 0" (click)="onPageChange(-1)">Previous</button>
   <span>Page {{ page + 1 }} of {{ totalPages }}</span>
-  <button class="page-button" [disabled]="page === totalPages - 1" (click)="onPageChange(1)">Next</button>
+  <button class="page-button" [disabled]="page === totalPages - 1 ||totalPages == 0" (click)="onPageChange(1)">Next</button>
 </div>
 
 <ng-template #whenMembersIsEmpty>

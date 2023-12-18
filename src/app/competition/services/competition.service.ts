@@ -37,8 +37,8 @@ export class CompetitionService {
     return this.http.post<Competition>(this.apiUrl , competition , httpOptions);
   }
 
-  getParticipantsOfCompetition(competitionId: number): Observable<PaginatedMembersResponse> {
-    return this.http.get<PaginatedMembersResponse>(this.apiUrl + "/" + competitionId + "/participants");
+  searchParticipantsOfCompetition(competitionId: number , value: string , page: number , size: number): Observable<PaginatedMembersResponse> {
+    return this.http.get<PaginatedMembersResponse>(this.apiUrl + "/" + competitionId + "/participants/" + value + "?page=" + page + "&size=" + size);
   }
 
 }

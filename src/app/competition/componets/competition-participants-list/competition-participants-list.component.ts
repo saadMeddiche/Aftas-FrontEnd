@@ -21,6 +21,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 })
 export class CompetitionParticipantsListComponent extends MemberListComponent{
 
+  public competitionId: number  = 0;
+
   constructor(protected override memberService: MemberService ,
               protected override notificationService: NotificationsService ,
               protected competitionService: CompetitionService,
@@ -29,13 +31,23 @@ export class CompetitionParticipantsListComponent extends MemberListComponent{
   }
 
   override ngOnInit() {
-    const competitionId = this.activatedRoute.snapshot.params['id'];
-    this.getParticipants(competitionId);
+     this.competitionId = this.activatedRoute.snapshot.params['id'];
+    this.getParticipants(this.competitionId);
+  }
+
+
+  public override onSearch(){
+    this.getParticipants(this.competitionId);
+  }
+
+  public override onPageChange(n: number) {
+    this.page += n;
+    this.getParticipants(this.competitionId);
   }
 
 
   protected  getParticipants(competitionId : number) {
-    this.competitionService.getParticipantsOfCompetition(competitionId).subscribe(
+    this.competitionService.searchParticipantsOfCompetition(competitionId ,this.lookingFor ,this.page , this.size).subscribe(
       (PaginatedMembersResponse ) =>{
         this.members = PaginatedMembersResponse.content
         this.totalPages = PaginatedMembersResponse.totalPages
