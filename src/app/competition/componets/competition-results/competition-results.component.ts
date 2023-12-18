@@ -27,7 +27,9 @@ export class CompetitionResultsComponent {
 
   ngOnInit(){
     this.competitionId = this.activatedRoute.snapshot.params['competitionId'];
+
     this.calculateResults();
+
     this.getTopThree();
   }
 
@@ -48,7 +50,9 @@ export class CompetitionResultsComponent {
     this.competitionService.getTopThree(this.competitionId).subscribe(
       (data) => {
 
-        this.ranks = Object.entries(data).map(([key, value]) => ({ [key]: value }));
+        this.ranks = Object.entries(data).map(([key, value]) => (
+          { [key]: value })
+        );
         console.log("Ranks : " + JSON.stringify(this.ranks))
       },
       (HttpErrorResponse)=> {

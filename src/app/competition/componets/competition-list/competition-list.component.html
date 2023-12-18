@@ -3,6 +3,11 @@
   <button (click)="onSearch()">Search</button>
 </div>
 
+<!--<div>-->
+<!--  <button (click)="searchClosedCompetitions()">Closed Competitions</button>-->
+<!--  <button (click)="searchPendingCompetitions()">Pending Competitions</button>-->
+<!--</div>-->
+
 <div class="competition-list">
   <table *ngIf="competitions && competitions.length > 0 ; else whenCompetitionsIsEmpty">
     <thead>

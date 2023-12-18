@@ -34,6 +34,14 @@ export class CompetitionService {
     return this.http.get<PaginatedCompetitionsResponse>(this.apiUrl + "/search/" + value + "?page=" + page + "&size=" + size);
   }
 
+  searchPendingCompetitions(value: string , page: number , size: number): Observable<PaginatedCompetitionsResponse> {
+    return this.http.get<PaginatedCompetitionsResponse>(this.apiUrl + "/after/search/" + value + "?page=" + page + "&size=" + size);
+  }
+
+  searchClosedCompetitions(value: string , page: number , size: number): Observable<PaginatedCompetitionsResponse> {
+    return this.http.get<PaginatedCompetitionsResponse>(this.apiUrl + "/before/search/" + value + "?page=" + page + "&size=" + size);
+  }
+
 
   addCompetition(competition: CompetitionAddRequest) : Observable<Competition>{
     return this.http.post<Competition>(this.apiUrl , competition , httpOptions);

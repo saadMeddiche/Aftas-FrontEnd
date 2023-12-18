@@ -61,4 +61,31 @@ export class CompetitionListComponent {
     )
   }
 
+
+  protected searchClosedCompetitions(){
+    this.competitionService.searchClosedCompetitions(this.lookingFor ,this.page , this.size).subscribe(
+      (PaginatedCompetitionsResponse ) =>{
+        this.competitions = PaginatedCompetitionsResponse.content
+        this.totalPages = PaginatedCompetitionsResponse.totalPages
+      },
+      (HttpErrorResponse) => {
+        this.notificationService.show(HttpErrorResponse.error , "warning")
+        console.log("Development Purpose Error :"+ HttpErrorResponse.error)
+      }
+    )
+  }
+
+  protected searchPendingCompetitions(){
+    this.competitionService.searchPendingCompetitions(this.lookingFor ,this.page , this.size).subscribe(
+      (PaginatedCompetitionsResponse ) =>{
+        this.competitions = PaginatedCompetitionsResponse.content
+        this.totalPages = PaginatedCompetitionsResponse.totalPages
+      },
+      (HttpErrorResponse) => {
+        this.notificationService.show(HttpErrorResponse.error , "warning")
+        console.log("Development Purpose Error :"+ HttpErrorResponse.error)
+      }
+    )
+  }
+
 }
