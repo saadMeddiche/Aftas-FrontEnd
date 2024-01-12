@@ -21,7 +21,7 @@ const httpOptions = {
 })
 export class CompetitionService {
 
-  private apiUrl = 'http://localhost:8080/api/V1/competitions';
+  private apiUrl = 'http://aftasbackend:8080/api/V1/competitions';
 
   constructor(private http: HttpClient) { }
 

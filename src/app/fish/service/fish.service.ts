@@ -9,7 +9,7 @@ import {PaginatedFishesResponse} from "../../hunting/models/paginatedFishesRespo
 })
 export class FishService {
 
-  private url = 'http://localhost:8080/api/V1/fishes';
+  private url = 'http://aftasbackend:8080/api/V1/fishes';
 
   constructor(private http: HttpClient) { }
 

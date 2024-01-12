@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class MemberService {
 
-  private apiUrl = 'http://localhost:8080/api/V1/members';
+  private apiUrl = 'http://aftasbackend:8080/api/V1/members';
 
   constructor(private http: HttpClient) { }
 

@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class RankingService {
 
-  private apiUrl = 'http://localhost:8080/api/V1/rankings';
+  private apiUrl = 'http://aftasbackend:8080/api/V1/rankings';
 
   constructor(private http: HttpClient) { }
 

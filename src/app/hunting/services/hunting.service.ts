@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class HuntingService {
 
-  private url = 'http://localhost:8080/api/V1/huntings';
+  private url = 'http://aftasbackend:8080/api/V1/huntings';
   constructor(private http : HttpClient) { }
 
   addHunting(hunting : HuntingAddRequest){
